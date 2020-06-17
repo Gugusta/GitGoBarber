@@ -12,7 +12,7 @@
 
 *******************************************************************************
 
-# Recuperação de senha -> TO DO
+# Recuperação de senha -> DONE
 
 **Requisitos Funcionais**
 
