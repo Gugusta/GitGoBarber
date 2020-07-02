@@ -10,7 +10,7 @@ import profileRouter from '@modules/users/infra/http/routes/profile.routes';
 
 const routes = Router();
 
-routes.use('/appointments', appointmentsRouter);
+routes.use('/appointments/me', appointmentsRouter);
 routes.use('/providers', providersRouter);
 routes.use('/users', usersRouter);
 routes.use('/sessions', sesseionsRouter);
