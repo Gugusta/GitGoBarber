@@ -120,18 +120,15 @@ const Profile: React.FC = () => {
 
           return;
         }
+
         addToast({
           type: 'error',
           title: 'Erro na atualização',
-          description:
-            'Ocorreu um erro ao atualizar seu Perfil! Tente novamente!',
+          description: 'Ocorreu um erro ao atualizar perfil, tente novamente',
         });
-        const errors = getValidationErrors(err);
-
-        formRef.current?.setErrors(errors);
       }
     },
-    [addToast, history],
+    [addToast, history, updateUser],
   );
 
   return (
