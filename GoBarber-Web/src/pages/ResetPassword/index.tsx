@@ -25,9 +25,9 @@ interface ResetPasswordFormData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  
+
   const history = useHistory();
-  const location = useLocation()
+  const location = useLocation();
 
   const { addToast } = useToast();
 
@@ -38,27 +38,28 @@ const SignIn: React.FC = () => {
 
         const schema = Yup.object().shape({
           password: Yup.string().required('Senha obrigatória'),
-          password_confirmation: Yup.string().oneOf([Yup.ref('password'),null], 'Confirmação incorreta'),
+          password_confirmation: Yup.string().oneOf(
+            [Yup.ref('password'), null],
+            'Confirmação incorreta',
+          ),
         });
 
         await schema.validate(data, { abortEarly: false });
 
-        const {password, password_confirmation} = data
-        const token = location.search.replace('?token=', '')
+        const { password, password_confirmation } = data;
+        const token = location.search.replace('?token=', '');
 
-        if(!token){
-            throw new Error()
-        
+        if (!token) {
+          throw new Error();
         }
 
         await api.post('/password/rest', {
-        password,
-        password_confirmation,
-        token
-        })
+          password,
+          password_confirmation,
+          token,
+        });
 
-        history.push('/')
-        
+        history.push('/');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -85,7 +86,7 @@ const SignIn: React.FC = () => {
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Resetar Senha</h1>
-            
+
             <Input
               name="password"
               icon={FiLock}
@@ -101,7 +102,6 @@ const SignIn: React.FC = () => {
             />
 
             <Button type="submit">Alterar Senha</Button>
-          
           </Form>
 
           <Link to="/signin">
