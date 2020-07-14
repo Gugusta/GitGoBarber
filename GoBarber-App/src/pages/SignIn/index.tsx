@@ -44,8 +44,7 @@ const SignIn: React.FC = () => {
 
   const navegation = useNavigation();
 
-  const { signIn, user } = useAuth();
-  console.log(user);
+  const { signIn } = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -55,11 +54,13 @@ const SignIn: React.FC = () => {
         const schema = Yup.object().shape({
           email: Yup.string()
             .required('E-mail obrigatório')
-            .email('Digite um e-mail valido'),
+            .email('Digite um e-mail válido'),
           password: Yup.string().required('Senha obrigatória'),
         });
 
-        await schema.validate(data, { abortEarly: false });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
         await signIn({
           email: data.email,
@@ -75,8 +76,8 @@ const SignIn: React.FC = () => {
         }
 
         Alert.alert(
-          'Erro na Autenticacao',
-          'Ocorreu um erro ao fazer login, cheque suas credenciais',
+          'Erro na autenticação',
+          'Ocorreu um erro ao fazer login, verifique as credenciais',
         );
       }
     },
