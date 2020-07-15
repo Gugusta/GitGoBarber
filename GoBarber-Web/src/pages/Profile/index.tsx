@@ -87,7 +87,7 @@ const Profile: React.FC = () => {
           password_confirmation,
         } = data;
 
-        const formDate = {
+        const formData = {
           name,
           email,
           ...(data.old_password
@@ -99,7 +99,7 @@ const Profile: React.FC = () => {
             : {}),
         };
 
-        const response = await api.put('/profile', formDate);
+        const response = await api.put('/profile', formData);
 
         updateUser(response.data);
 
