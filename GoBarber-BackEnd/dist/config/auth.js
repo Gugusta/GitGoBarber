@@ -1,8 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
-    jwt: {
-        secret: '8fb9c2a9f5aa9a280a53e5dee295a00b',
-        expiresIn: '1d',
-    },
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  jwt: {
+    secret: process.env.APP_SECRET || 'default',
+    expiresIn: '1d'
+  }
 };
+exports.default = _default;
